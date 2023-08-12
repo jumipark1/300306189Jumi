@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Final Exam Set C</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>Category Sales Summary Table</h2>
+<script>
+    document.getElementById("mes").innerHTML = "";
+</script>
+<div class="container">
+    <form method="GET">
+        <div class="form-group">
+            <label for="ccode">Category Code:</label>
+            <input type="text" name="catcode" class="form-control" id="ccode" th:attr="value = ${id}" >
+        </div>
+        <div class="form-group">
+            <label for="cdesc">Category Description:</label>
+            <input type="text" name="catdesc" class="form-control" id="cdesc" th:attr="value = ${desc}">
+        </div>
+        <div class="form-group">
+            <label for="tsales">Toal Sales:</label>
+            <input type="text" name="tsales" class="form-control" id="tsales" th:attr="value = ${tsales}">
+        </div>
+        <div>
+            <label>Recepit no</label>
+            <input class="form-control" type="text" name="recepit" th:value="${item.receipt}">
+            <span th:errors="${itme.recepit}"></span>
+        </div>
+        <div>
+            <label>Item Type</label>
+            <input class="form-control" type="text" name="item_type" th:value="${item.item_type}">
+            <span th:errors="${item.item_type}"></span>
+        </div>
+        <div>
+            <label>Quantity</label>
+            <input class="form-control" type="text" name="quantity" th:value="${item.quantity}">
+            <span th:errors="${item.quantity}"></span>
+        </div>
+        <div>
+            <label>Date of Transaction</label>
+            <input class="form-control" type="date" name="dot" th:value="${item.dot}">
+            <span th:errors="${item.dot}"></span>
+        </div>
+        <button type="submit" class="btn-primary" th:href="@{/index}" >Save</button>
+    </form>
+    <div class="container"></div>
+    <h2>Record already exists</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Receipt No</th>
+                <th>Item Code</th>
+                <th>Quantity</th>
+                <th>Transaction Date</th>
+
+            </tr>
+            </thead>
+        </table>
+
+    <td>    <a type="button" class="btn btn-primary"
+               th:href="@{delete(id=${p.item})}" >Delete</a> </td>
+    <td>    <a type="button" class="btn btn-primary"
+               href="update-todo?id=${todo.catcode}"
+               th:href="@{update(id=${p.item})}">Edit</a> </td>
+</div>
+
+</body>
+</html>
